@@ -2,19 +2,36 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 
+class Test extends React.Component {
+  render() {
+    return <>
+      {console.log("render test")}
+    </>
+  }
+}
 
 class Square extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value : null,
+    }
+  }
   render() {
     return (
-      <button className="square">
-
+      <button className="square" 
+              onClick={() => {this.setState({value : "X"})}}
+      >
+        {this.state.value}
+        {console.log("click lại", this.state.value)}
+        <Test/>
       </button>
     )
   }
 }
 class Board extends React.Component {
-  renderSquare() {
-    return <Square />;
+  renderSquare(i) {
+    return <Square value={i} />;
   }
 
   render() {
